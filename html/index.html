@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ua">
+  <head>
+    <meta charset="utf-8">
+    <title>Меню</title>
+    <style media="screen">
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Times New Roman';
+        font-size: 14px;
+        color: black;
+        background: #ccc;
+      }
+
+      .menu {
+        height: 600px;
+        width: 800px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        font-size: 3em;
+        text-align: center;
+        margin: 0 auto;
+        padding-right: 150px;
+      }
+
+      input {
+        font-size: 1.5em;
+        text-align: center;
+        padding: 5px;
+        margin: 5px 10px;
+        width: 300px;
+        height: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="menu">
+      <h1>Меню</h1>
+      <a href="http://localhost:8080/add_company"><input type="submit" name="addCompany" value="Додати компанію"></a>
+      <a href="http://localhost:8080/add_bill"><input type="submit" name="addBill" value="Додати рахунок"></a>
+      <a href="http://localhost:8080/add_payment"><input type="submit" name="addPayment" value="Додати платіж"></a>
+      <a href="http://localhost:8080/show_all"><input type="submit" name="showAll" value="Показати всі платежі"></a>
+    </div>
+  </body>
+</html>
