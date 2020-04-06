@@ -9,6 +9,13 @@ def insert_new_company(connection, values):
     connection.commit()
 
 
+# show all company names
+def select_all_company(connection):
+    cursor = connection.cursor()
+    cursor.execute(SHOW_ALL_COMPANY)
+    return cursor.fetchall()
+
+
 # add new billing
 def insert_new_billing(connection, values):
     cursor = connection.cursor()

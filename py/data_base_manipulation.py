@@ -22,6 +22,12 @@ def add_new_company(company_name):
     insert_new_company(data_base_connection, company_name)
 
 
+# show all company names
+def show_all_company():
+    select = select_all_company(data_base_connection)
+    return select
+
+
 # add new billing
 def add_new_billing(billing_data):
     insert_new_billing(data_base_connection, billing_data)
@@ -35,26 +41,22 @@ def add_new_payment(payment_data):
 # show all payments
 def show_all_payments():
     select = select_all_payments(data_base_connection)
-    for row in select:
-        print(row)
+    return select
 
 
 # by date
 def show_all_payments_by_date(date):
     select = select_all_payments_by_date(data_base_connection, date)
-    for row in select:
-        print(row)
+    return select
 
 
 # total payment sum
 def show_all_payments_by_sum(payment_sum):
     select = select_all_payments_by_sum(data_base_connection, payment_sum)
-    for row in select:
-        print(row)
+    return select
 
 
 # total billed sum
 def show_all_payments_by_bill_sum(bill_sum):
     select = select_all_payments_by_bill_sum(data_base_connection, bill_sum)
-    for row in select:
-        print(row)
+    return select

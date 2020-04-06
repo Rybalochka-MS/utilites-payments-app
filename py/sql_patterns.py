@@ -4,6 +4,12 @@ INSERT INTO utilites_payment.company_name(company_name) \
 VALUES ('{}');\
 "
 
+# show all company names
+SHOW_ALL_COMPANY = "\
+SELECT company_name FROM utilites_payment.company_name;\
+"
+
+
 # add new billing
 ADD_NEW_BILLING = "\
 INSERT INTO utilites_payment.billings(company_id, billing_name, billing, create_date, total_bill_sum, billing_sum) \

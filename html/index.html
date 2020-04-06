@@ -10,7 +10,6 @@
         font-family: 'Times New Roman';
         font-size: 14px;
         color: black;
-        background: #ccc;
       }
 
       .menu {
@@ -19,11 +18,14 @@
         margin: 0 auto;
       }
 
+      .input {
+          margin-left: 80px;
+      }
+
       h1 {
         font-size: 3em;
         text-align: center;
         margin: 0 auto;
-        padding-right: 150px;
       }
 
       input {
@@ -39,10 +41,12 @@
   <body>
     <div class="menu">
       <h1>Меню</h1>
-      <a href="http://localhost:8080/add_company"><input type="submit" name="addCompany" value="Додати компанію"></a>
-      <a href="http://localhost:8080/add_bill"><input type="submit" name="addBill" value="Додати рахунок"></a>
-      <a href="http://localhost:8080/add_payment"><input type="submit" name="addPayment" value="Додати платіж"></a>
-      <a href="http://localhost:8080/show_all"><input type="submit" name="showAll" value="Показати всі платежі"></a>
+      <div class="input">
+        <a href="http://localhost:8080/add_company"><input type="submit" name="addCompany" value="Додати компанію"></a>
+        <a href="http://localhost:8080/add_bill"><input type="submit" name="addBill" value="Додати рахунок"></a>
+        <a href="http://localhost:8080/add_payment"><input type="submit" name="addPayment" value="Додати платіж"></a>
+        <a href="http://localhost:8080/show_all"><input type="submit" name="showAll" value="Показати всі платежі"></a>
+      </div>
     </div>
   </body>
 </html>
