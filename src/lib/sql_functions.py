@@ -30,6 +30,13 @@ def insert_new_billing(connection, values):
     connection.commit()
 
 
+# show all company bill and id
+def get_all_bill(connection):
+    cursor = connection.cursor()
+    cursor.execute(GET_ALL_BILLINGS)
+    return cursor.fetchall()
+
+
 # add new payment
 def insert_new_payment(connection, values):
     cursor = connection.cursor()

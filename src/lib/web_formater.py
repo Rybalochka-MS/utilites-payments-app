@@ -6,10 +6,20 @@ def company_table_formatter(company_names):
     return rows
 
 
+# Format array from DataBase to HTML
+def all_payments_formatter(all_payments_data):
+    rows = ""
+    for row in all_payments_data:
+        rows = rows + "<tr>\n<td>{}</td>\n<td>{}</td>\n<td>{}</td>\n<td>{}</td>\n" \
+                      "<td>{}</td>\n<td>{}</td>\n<td>{}</td>\n<td>{}</td>\n</tr>\n"\
+            .format(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7])
+    return rows
+
+
 # Create list all companies
-def create_company_list(company_id_and_name):
+def create_list(id_and_name):
     company_list = ""
-    for item in company_id_and_name:
+    for item in id_and_name:
         company_list = company_list + "<option value={}>{}</option>\n"\
             .format(item[0], item[1])
     return company_list

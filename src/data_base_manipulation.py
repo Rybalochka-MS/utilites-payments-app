@@ -39,6 +39,12 @@ def add_new_billing(billing_data):
     insert_new_billing(data_base_connection, billing_data)
 
 
+# get all company bills and bills id
+def get_bill_list():
+    select = get_all_bill(data_base_connection)
+    return select
+
+
 # add new payment
 def add_new_payment(payment_data):
     insert_new_payment(data_base_connection, payment_data)

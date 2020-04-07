@@ -1,7 +1,7 @@
 from bottle import get, post, error, static_file, request
 from src.data_base_manipulation import *
 from src.response_pages import company_name_response
-from src.request_pages import new_billing_request
+from src.request_pages import new_billing_request, new_payment_request, all_payments_request
 
 
 @get('/')
@@ -34,7 +34,8 @@ def add_bill():
 
 @get('/add_payment')
 def get_payment():
-    return "Wait update"
+    request_page = new_payment_request()
+    return request_page
 
 
 @post('/add_payment')
@@ -44,7 +45,8 @@ def add_payment():
 
 @get('/show_all')
 def show_all():
-    return "Wait update"
+    request_page = all_payments_request()
+    return request_page
 
 
 @error(404)
