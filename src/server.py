@@ -1,27 +1,23 @@
 from bottle import get, post, error, static_file, request
 from src.data_base_manipulation import *
-from src.lib.utilites import read_file
-from src.lib.web_formater import *
+from src.response_pages import company_name_response
 
 
 @get('/')
 def menu():
-    return static_file('index.html', root='./html/')
+    return static_file('index.html', root='./src/html/')
 
 
 @get('/add_company')
 def company_page():
-    return static_file('add_company.html', root='./html/')
+    return static_file('add_company.html', root='./src/html/')
 
 
 @post('/add_company')
 def add_company():
     add_new_company(request.forms.get('company_name'))
-    all_companies = show_all_company()
-    rows = company_table_formatter(all_companies)
-    page = read_file('./src/html/view_companies.html')
-    page = page.replace('{}', rows)
-    return page
+    response_page = company_name_response()
+    return response_page
 
 
 @get('/add_bill')
