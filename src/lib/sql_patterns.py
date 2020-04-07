@@ -9,6 +9,9 @@ SHOW_ALL_COMPANY = "\
 SELECT company_name FROM utilites_payment.company_name;\
 "
 
+GET_ALL_COMPANY = "\
+SELECT company_id, company_name FROM utilites_payment.company_name;\
+"
 
 # add new billing
 ADD_NEW_BILLING = "\
@@ -16,10 +19,14 @@ INSERT INTO utilites_payment.billings(company_id, billing_name, billing, create_
 VALUES ('{}, {}, {}, CURDATE(), {}, {}');\
 "
 
+GET_ALL_BILLINGS = "\
+SELECT billing_id, billing FROM utilites_payment.billings;\
+"
+
 # add new payment
 ADD_NEW_PAYMENT = "\
 INSERT INTO utilites_payment.payments(billing_id, payment_datetime, payment_sum) \
-VALUES ('{}, STR_TO_DATE(%s, 'dd-mm-yyyy'), {}');\
+VALUES ('{}, STR_TO_DATE({}, 'dd-mm-yyyy'), {}');\
 "
 
 # show all payments by
