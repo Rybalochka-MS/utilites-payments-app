@@ -1,4 +1,4 @@
-from py.sql_patterns import *
+from src.lib.sql_patterns import *
 
 
 # add new company

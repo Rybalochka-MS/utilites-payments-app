@@ -1,5 +1,7 @@
 from bottle import get, post, error, static_file, request
-from py.data_base_manipulation import *
+from src.data_base_manipulation import *
+from src.lib.utilites import read_file
+from src.lib.web_formater import *
 
 
 @get('/')
@@ -16,24 +18,30 @@ def company_page():
 def add_company():
     add_new_company(request.forms.get('company_name'))
     all_companies = show_all_company()
-    rows = ""
-    for row in all_companies:
-        rows = rows + "<tr>\n   <td>{}</td>\n</tr>\n".format(row[0])
-    page_file = open('./html/view_companies.html', 'r', encoding='utf-8')
-    buf = page_file.read()
-    page_file.close()
-    page = buf.replace('{}', rows)
+    rows = company_table_formatter(all_companies)
+    page = read_file('./src/html/view_companies.html')
+    page = page.replace('{}', rows)
     return page
 
 
 @get('/add_bill')
-def add_bill():
+def get_bill():
     return "Wait update"
+
+
+@post('/add_bill')
+def add_bill():
+    return ""
 
 
 @get('/add_payment')
-def add_payment():
+def get_payment():
     return "Wait update"
+
+
+@post('/add_payment')
+def add_payment():
+    return ""
 
 
 @get('/show_all')

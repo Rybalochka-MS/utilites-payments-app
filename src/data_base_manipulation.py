@@ -9,8 +9,8 @@
         Payments table (payment_id, billing_id, payment_datetime, payment_sum)
 """
 import mysql.connector
-from py import load_properties
-from py.sql_functions import *
+from src import load_properties
+from src.lib.sql_functions import *
 
 # connect to DataBase
 hst, usr, password = load_properties.get_db_credentials()

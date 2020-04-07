@@ -3,7 +3,7 @@ import configparser
 
 def load_config():
     config = configparser.RawConfigParser()
-    config.read('./config/resources.properties')
+    config.read('./properties/resources.properties')
     return config
 
 
