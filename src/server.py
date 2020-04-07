@@ -1,6 +1,7 @@
 from bottle import get, post, error, static_file, request
 from src.data_base_manipulation import *
 from src.response_pages import company_name_response
+from src.request_pages import new_billing_request
 
 
 @get('/')
@@ -22,7 +23,8 @@ def add_company():
 
 @get('/add_bill')
 def get_bill():
-    return "Wait update"
+    request_page = new_billing_request()
+    return request_page
 
 
 @post('/add_bill')

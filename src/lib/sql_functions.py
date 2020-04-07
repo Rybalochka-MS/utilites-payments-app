@@ -16,6 +16,13 @@ def select_all_company(connection):
     return cursor.fetchall()
 
 
+# show all company names and id companies
+def get_all_company(connection):
+    cursor = connection.cursor()
+    cursor.execute(GET_ALL_COMPANY)
+    return cursor.fetchall()
+
+
 # add new billing
 def insert_new_billing(connection, values):
     cursor = connection.cursor()
