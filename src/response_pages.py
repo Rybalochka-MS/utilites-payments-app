@@ -10,3 +10,12 @@ def company_name_response():
     page = read_file('./src/html/view_companies.html')
     page = page.replace('{}', rows)
     return page
+
+
+# Send response page after add new billing
+def billing_response():
+    all_billing_data = get_bill_list()
+    rows = billing_table_formatter(all_billing_data)
+    page = read_file('./src/html/view_bills.html')
+    page = page.replace("{}", rows)
+    return page

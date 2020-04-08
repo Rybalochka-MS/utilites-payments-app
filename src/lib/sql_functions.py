@@ -26,14 +26,20 @@ def get_all_company(connection):
 # add new billing
 def insert_new_billing(connection, values):
     cursor = connection.cursor()
-    cursor.execute(ADD_NEW_BILLING.format(values))
+    cursor.execute(ADD_NEW_BILLING.format(int(values[0]), str(values[1]), int(values[2]), int(values[3]), int(values[4])))
     connection.commit()
 
 
 # show all company bill and id
 def get_all_bill(connection):
     cursor = connection.cursor()
-    cursor.execute(GET_ALL_BILLINGS)
+    cursor.execute(SHOW_ALL_BILLINGS)
+    return cursor.fetchall()
+
+
+def select_billing(connection):
+    cursor = connection.cursor()
+    cursor.execute(SHOW_ALL_BILLINGS)
     return cursor.fetchall()
 
 

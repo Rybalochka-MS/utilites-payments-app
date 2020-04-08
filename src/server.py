@@ -1,6 +1,6 @@
 from bottle import get, post, error, static_file, request
 from src.data_base_manipulation import *
-from src.response_pages import company_name_response
+from src.response_pages import company_name_response, billing_response
 from src.request_pages import new_billing_request, new_payment_request, all_payments_request
 
 
@@ -29,7 +29,16 @@ def get_bill():
 
 @post('/add_bill')
 def add_bill():
-    return ""
+    billing_data = (
+        request.forms.get('company_id'),
+        request.forms.get('billing_name'),
+        request.forms.get('billing'),
+        request.forms.get('total_bill_sum'),
+        request.forms.get('billing_sum')
+    )
+    add_new_billing(billing_data)
+    response_page = billing_response()
+    return response_page
 
 
 @get('/add_payment')

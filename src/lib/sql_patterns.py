@@ -16,11 +16,18 @@ SELECT company_id, company_name FROM utilites_payment.company_name;\
 # add new billing
 ADD_NEW_BILLING = "\
 INSERT INTO utilites_payment.billings(company_id, billing_name, billing, create_date, total_bill_sum, billing_sum) \
-VALUES ('{}, {}, {}, CURDATE(), {}, {}');\
+VALUES ({}, '{}', {}, CURDATE(), {}, {});\
 "
 
 GET_ALL_BILLINGS = "\
 SELECT billing_id, billing FROM utilites_payment.billings;\
+"
+
+SHOW_ALL_BILLINGS = "\
+SELECT company.company_name, bill.billing_name, bill.billing \
+FROM utilites_payment.billings as bill \
+LEFT JOIN utilites_payment.company_name as company \
+ON bill.company_id = company.company_id;\
 "
 
 # add new payment

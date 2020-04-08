@@ -7,6 +7,14 @@ def company_table_formatter(company_names):
 
 
 # Format array from DataBase to HTML
+def billing_table_formatter(all_bills_data):
+    rows = ""
+    for row in all_bills_data:
+        rows = rows + "<tr>\n<td>{}</td>\n<td>{}</td>\n<td>{}</td>\n</tr>\n".format(row[0], row[1], row[2])
+    return rows
+
+
+# Format array from DataBase to HTML
 def all_payments_formatter(all_payments_data):
     rows = ""
     for row in all_payments_data:
