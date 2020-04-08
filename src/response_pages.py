@@ -14,8 +14,17 @@ def company_name_response():
 
 # Send response page after add new billing
 def billing_response():
-    all_billing_data = get_bill_list()
+    all_billing_data = select_billing_list()
     rows = billing_table_formatter(all_billing_data)
     page = read_file('./src/html/view_bills.html')
     page = page.replace("{}", rows)
+    return page
+
+
+# Create response page for view all utilities payments
+def all_payments_response(select_filter):
+    all_payments = show_all_payments(select_filter)
+    all_payments_list = all_payments_formatter(all_payments)
+    page = read_file("./src/html/show_all.html")
+    page = page.replace("{}", all_payments_list)
     return page

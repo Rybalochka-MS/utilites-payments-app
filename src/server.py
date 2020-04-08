@@ -1,6 +1,7 @@
 from bottle import get, post, error, static_file, request
 from src.data_base_manipulation import *
-from src.response_pages import company_name_response, billing_response
+from src.lib.sql_functions import create_filter
+from src.response_pages import company_name_response, billing_response, all_payments_response
 from src.request_pages import new_billing_request, new_payment_request, all_payments_request
 
 
@@ -49,13 +50,30 @@ def get_payment():
 
 @post('/add_payment')
 def add_payment():
-    return ""
+    payment_data = (
+        request.forms.get('billing_id'),
+        request.forms.get('payment_date'),
+        request.forms.get('payment_sum')
+    )
+    add_new_payment(payment_data)
+    upd_billing_sum(payment_data)
+    return show_all()
 
 
 @get('/show_all')
 def show_all():
     request_page = all_payments_request()
     return request_page
+
+
+@post('/show_all')
+def show_all_by_filter():
+    payment_date = request.forms.get('payment_date')
+    payment_sum = request.forms.get('payment_sum')
+    bill_sum = request.forms.get('bill_sum')
+    select_filter = create_filter(payment_date, payment_sum, bill_sum)
+    response_page = all_payments_response(select_filter)
+    return response_page
 
 
 @error(404)

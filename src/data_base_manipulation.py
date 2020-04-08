@@ -56,24 +56,12 @@ def add_new_payment(payment_data):
 
 
 # show all payments
-def show_all_payments():
-    select = select_all_payments(data_base_connection)
+def show_all_payments(where):
+    select = select_all_payments(data_base_connection, where)
     return select
 
 
-# by date
-def show_all_payments_by_date(date):
-    select = select_all_payments_by_date(data_base_connection, date)
-    return select
-
-
-# total payment sum
-def show_all_payments_by_sum(payment_sum):
-    select = select_all_payments_by_sum(data_base_connection, payment_sum)
-    return select
-
-
-# total billed sum
-def show_all_payments_by_bill_sum(bill_sum):
-    select = select_all_payments_by_bill_sum(data_base_connection, bill_sum)
-    return select
+def upd_billing_sum(payment_data):
+    billing_sum = select_billing_sum(data_base_connection, int(payment_data[0]))
+    new_billing_sum = int(billing_sum[0][0]) + int(payment_data[2])
+    update_billing_sum(data_base_connection, int(payment_data[0]), new_billing_sum)

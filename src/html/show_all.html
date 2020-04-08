@@ -55,7 +55,7 @@
 
       .filter, .table {
         height: 40px;
-        width: 300px;
+        width: 150px;
         background-color: #dbf0b4;
         text-align: center;
       }
@@ -63,20 +63,19 @@
       .table {
         border: none;
       }
-
-      #filter_button {
-        background-color: #b4db6b;
-      }
     </style>
   </head>
   <body>
     <h1>Показати всі платежі</h1>
       <table>
         <tr class="filter">
-          <form action="filter" method="post">
-            <td colspan="2" class="filter"><input type="date" name="payment_date" class="table"></td>
-            <td colspan="2" class="filter"><input type="text" name="payment_sum" value="сума платежу" class="table"></td>
-            <td colspan="2" class="filter"><input type="text" name="bill_sum" value="сума рахунку" class="table"></td>
+          <form action="show_all" method="post">
+            <td>дата платежу</td>
+            <td class="filter"><input type="date" name="payment_date" class="table"></td>
+            <td>сума платежу</td>
+            <td class="filter"><input type="text" name="payment_sum" class="table"></td>
+            <td>сума рахунку</td>
+            <td class="filter"><input type="text" name="bill_sum" class="table"></td>
             <td colspan="2" class="filter"><input type="submit" name="filter" value="Фільтрувати" class="table" id="filter_button"></td>
           </form>
         </tr>

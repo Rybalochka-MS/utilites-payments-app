@@ -33,7 +33,7 @@ ON bill.company_id = company.company_id;\
 # add new payment
 ADD_NEW_PAYMENT = "\
 INSERT INTO utilites_payment.payments(billing_id, payment_datetime, payment_sum) \
-VALUES ('{}, STR_TO_DATE({}, 'dd-mm-yyyy'), {}');\
+VALUES ({}, STR_TO_DATE('{}', '%Y-%m-%d'), {});\
 "
 
 # show all payments by
@@ -45,44 +45,17 @@ FROM utilites_payment.payments as pmts \
 LEFT JOIN utilites_payment.billings as bill \
 ON pmts.billing_id = bill.billing_id \
 LEFT JOIN utilites_payment.company_name cn \
-ON bill.company_id = cn.company_id; \
+ON bill.company_id = cn.company_id \
 "
 
-# date
-SHOW_ALL_PAYMENTS_BY_DATETIME = "\
-SELECT cn.company_name, bill.billing_name, bill.billing, \
-       bill.create_date, bill.total_bill_sum, bill.billing_sum, \
-       pmts.payment_datetime, pmts.payment_sum \
-FROM utilites_payment.payments as pmts \
-LEFT JOIN utilites_payment.billings as bill \
-ON pmts.billing_id = bill.billing_id \
-LEFT JOIN utilites_payment.company_name cn \
-ON bill.company_id = cn.company_id \
-WHERE payment_datetime = STR_TO_DATE('{}', 'dd-mm-yyyy'); \
+SELECT_BILLING_SUM = "\
+SELECT billing_sum FROM utilites_payment.billings \
+WHERE billing_id = {};\
 "
 
-# total payment sum
-SHOW_ALL_PAYMENTS_BY_SUM = " \
-SELECT cn.company_name, bill.billing_name, bill.billing, \
-       bill.create_date, bill.total_bill_sum, bill.billing_sum, \
-       pmts.payment_datetime, pmts.payment_sum \
-FROM utilites_payment.payments as pmts \
-LEFT JOIN utilites_payment.billings as bill \
-ON pmts.billing_id = bill.billing_id \
-LEFT JOIN utilites_payment.company_name cn \
-ON bill.company_id = cn.company_id \
-WHERE payment_sum = '{}'; \
+UPDATE_BILLING_SUM = "\
+UPDATE utilites_payment.billings \
+SET total_bill_sum = {} \
+WHERE billing_id = {}; \
 "
 
-# total billed sum
-SHOW_ALL_PAYMENTS_BY_BILL_SUM = "\
-SELECT cn.company_name, bill.billing_name, bill.billing, \
-       bill.create_date, bill.total_bill_sum, bill.billing_sum, \
-       pmts.payment_datetime, pmts.payment_sum \
-FROM utilites_payment.payments as pmts \
-LEFT JOIN utilites_payment.billings as bill \
-ON pmts.billing_id = bill.billing_id \
-LEFT JOIN utilites_payment.company_name cn \
-ON bill.company_id = cn.company_id \
-WHERE billing_sum = '{}'; \
-"

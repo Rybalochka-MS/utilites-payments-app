@@ -23,7 +23,7 @@ def new_payment_request():
 
 # Create request page for view all utilities payments
 def all_payments_request():
-    all_payments = show_all_payments()
+    all_payments = show_all_payments("")
     all_payments_list = all_payments_formatter(all_payments)
     page = read_file("./src/html/show_all.html")
     page = page.replace("{}", all_payments_list)
