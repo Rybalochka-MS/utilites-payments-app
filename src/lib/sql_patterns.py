@@ -32,7 +32,7 @@ ON bill.company_id = company.company_id;\
 
 # add new payment
 ADD_NEW_PAYMENT = "\
-INSERT INTO utilites_payment.payments(billing_id, payment_datetime, payment_sum) \
+INSERT INTO UTILITES_PAYMENT.PAYMENTS(billing_id, payment_datetime, payment_sum) \
 VALUES ({}, STR_TO_DATE('{}', '%Y-%m-%d'), {});\
 "
 
