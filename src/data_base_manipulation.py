@@ -8,13 +8,11 @@
                         total_bill_sum, billing_sum)
         Payments table (payment_id, billing_id, payment_datetime, payment_sum)
 """
-import mysql.connector
-from src import load_properties
+import sqlite3
 from src.lib.sql_functions import *
 
 # connect to DataBase
-hst, usr, password = load_properties.get_db_credentials()
-data_base_connection = mysql.connector.connect(host=hst, user=usr, passwd=password)
+data_base_connection = sqlite3.connect("utilitiesPayment.sqlite3")
 
 
 # add new company

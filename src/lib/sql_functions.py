@@ -4,9 +4,11 @@ from src.lib.sql_patterns import *
 # add new company
 def insert_new_company(connection, values):
     cursor = connection.cursor()
-    print(ADD_NEW_COMPANY.format(values))
-    cursor.execute(ADD_NEW_COMPANY.format(values))
+    select = cursor.execute(SELECT_COUNT.format("COMPANY_NAME"))
+    count = select.fetchall()[0][0]
+    cursor.execute(ADD_NEW_COMPANY.format(count + 1, values))
     connection.commit()
+    cursor.close()
 
 
 # show all company names
@@ -26,9 +28,12 @@ def get_all_company(connection):
 # add new billing
 def insert_new_billing(connection, values):
     cursor = connection.cursor()
+    select = cursor.execute(SELECT_COUNT.format("BILLINGS"))
+    count = select.fetchall()[0][0]
     cursor.execute(ADD_NEW_BILLING
-                   .format(int(values[0]), str(values[1]), int(values[2]), int(values[3]), int(values[4])))
+                   .format(count + 1, int(values[0]), str(values[1]), int(values[2]), int(values[3]), int(values[4])))
     connection.commit()
+    cursor.close()
 
 
 # show all company bill and id
@@ -47,8 +52,11 @@ def select_billing(connection):
 # add new payment
 def insert_new_payment(connection, values):
     cursor = connection.cursor()
-    cursor.execute(ADD_NEW_PAYMENT.format(int(values[0]), str(values[1]), int(values[2])))
+    select = cursor.execute(SELECT_COUNT.format("PAYMENTS"))
+    count = select.fetchall()[0][0]
+    cursor.execute(ADD_NEW_PAYMENT.format(count + 1, int(values[0]), str(values[1]), int(values[2])))
     connection.commit()
+    cursor.close()
 
 
 # show all payments by
@@ -64,7 +72,7 @@ def select_all_payments(connection, value):
 def create_filter(payment_date, payment_sum, bill_sum):
     select_filter = "WHERE "
     if len(payment_date) > 0:
-        select_filter = select_filter + "payment_datetime = STR_TO_DATE('{}', '%Y-%m-%d')".format(payment_date)
+        select_filter = select_filter + "payment_datetime = strftime('%Y-%m-%d', '{}')".format(payment_date)
     if len(payment_sum) > 0:
         if len(select_filter) > 6:
             select_filter += " AND "
@@ -90,4 +98,4 @@ def update_billing_sum(connection, billing_id, billing_sum):
     print(UPDATE_BILLING_SUM.format(billing_sum, billing_id))
     cursor.execute(UPDATE_BILLING_SUM.format(billing_sum, billing_id))
     connection.commit()
-
+    cursor.close()
